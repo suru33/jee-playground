@@ -58,7 +58,11 @@ public class MessageResource {
 
 	@GET
 	@Path("/{messageId}")
-	public Message getMessage(@PathParam("messageId") Long id) {
+	public Message getMessage(@PathParam("messageId") Long id, @Context UriInfo uriInfo) {
+		Message message = messageService.getMessage(id);
+		message.addLink(getSelfUri(uriInfo, message), "self");
+		message.addLink(getProfileUri(uriInfo, message), "profile");
+		message.addLink(getCommentsUri(uriInfo, message), "comments");
 		return messageService.getMessage(id);
 	}
 
@@ -66,7 +70,7 @@ public class MessageResource {
 	@Path("/{messageId}")
 	public Message updateMessage(@PathParam("messageId") Long id, Message message) {
 		message.setId(id);
-		 return messageService.updateMessage(message);
+		return messageService.updateMessage(message);
 	}
 
 	@DELETE
@@ -79,4 +83,30 @@ public class MessageResource {
 	public CommentResource getCommentResource() {
 		return new CommentResource();
 	}
+
+	private String getSelfUri(UriInfo uriInfo, Message message) {
+		URI uri = uriInfo.getBaseUriBuilder()
+			.path(MessageResource.class)
+			.path(message.getId().toString())
+			.build();
+		return uri.toString();
+	}
+	
+	private String getProfileUri(UriInfo uriInfo, Message message) {
+		URI uri = uriInfo.getBaseUriBuilder()
+				.path(ProfileResource.class)
+				.path(message.getSender())
+				.build();
+		return uri.toString();
+	}
+	private String getCommentsUri(UriInfo uriInfo, Message message) {
+		URI uri = uriInfo.getBaseUriBuilder()
+				.path(MessageResource.class)
+				.path(MessageResource.class, "getCommentResource")
+				.path(CommentResource.class)
+				.resolveTemplate("messageId", message.getId())
+				.build();
+		return uri.toString();
+	}
+
 }
