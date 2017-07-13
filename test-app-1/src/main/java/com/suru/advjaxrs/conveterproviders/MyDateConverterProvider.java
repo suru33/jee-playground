@@ -16,8 +16,7 @@ public class MyDateConverterProvider implements ParamConverterProvider {
 
 	// dealing with a generic type
 	@Override
-	public <T> ParamConverter<T> getConverter(Class<T> rawType, 
-						Type genericType, Annotation[] annotations) {
+	public <T> ParamConverter<T> getConverter(Class<T> rawType, Type genericType, Annotation[] annotations) {
 
 		// checking the type id MyDate or not
 		if (rawType.getName().equals(MyDate.class.getName())) {
@@ -41,7 +40,7 @@ public class MyDateConverterProvider implements ParamConverterProvider {
 					myDate.setMonth(calendar.get(Calendar.MONTH));
 					myDate.setDay(calendar.get(Calendar.DATE));
 					myDate.setYear(calendar.get(Calendar.YEAR));
-					
+
 					// returning my result data type as generic
 					return rawType.cast(myDate);
 				}
