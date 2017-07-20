@@ -1,4 +1,4 @@
-package com.suru.advjaxrs;
+package com.suru.advjaxrs.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

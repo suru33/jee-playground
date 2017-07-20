@@ -70,4 +70,10 @@ public class User {
 		this.message = message;
 	}
 
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age
+				+ ", password=" + password + ", message=" + message + "]";
+	}
+
 }
