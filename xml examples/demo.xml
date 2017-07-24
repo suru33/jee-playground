@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:root xmlns:xs="http://www.suru.com/Address" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.suru.com/Address student.xsd ">
+	<xs:student id="101">
+		<xs:name>SuRu</xs:name>
+		<xs:branch>EEE</xs:branch>
+		<xs:email>suru@gmail.com</xs:email>
+		<xs:address>
+			<xs:line1>1535 170st</xs:line1>
+			<xs:line2></xs:line2>
+			<xs:city>Hammond</xs:city>
+			<xs:state>IN</xs:state>
+			<xs:zip>46324</xs:zip>
+		</xs:address>
+		<xs:payment id="1">
+			<xs:card>
+				<xs:amount>1500</xs:amount>
+				<xs:cardEndsWith>1236</xs:cardEndsWith>
+				<xs:cvv>123</xs:cvv>
+				<xs:expiry>10/2017</xs:expiry>
+			</xs:card>
+		</xs:payment>
+		<xs:payment id="2">
+			<xs:cash amount="1236" />
+		</xs:payment>
+	</xs:student>
+	<xs:student id="102">
+		<xs:name>James</xs:name>
+		<xs:branch>CSE</xs:branch>
+		<xs:email>jm@gmail.com</xs:email>
+		<xs:address>
+			<xs:line1>100 170st</xs:line1>
+			<xs:line2></xs:line2>
+			<xs:city>AH</xs:city>
+			<xs:state>IL</xs:state>
+			<xs:zip>60006</xs:zip>
+		</xs:address>
+		<xs:payment id="3">
+			<xs:cash amount="5566" />
+		</xs:payment>
+	</xs:student>
+</xs:root>

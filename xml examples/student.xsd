@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.suru.com/Address"
+	xmlns:xs="http://www.suru.com/Address" elementFormDefault="qualified">
+
+	<element name="root" type="xs:type_root" />
+
+
+	<!-- Types -->
+
+	<complexType name="type_root">
+		<sequence>
+			<element name="student" type="xs:type_student" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="type_student">
+		<sequence>
+			<element name="name" type="string" />
+			<element name="branch" type="xs:type_branch" />
+			<element name="email" type="xs:type_email" />
+			<element name="address" type="xs:type_address" />
+			<element name="payment" type="xs:type_payment" maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="id" type="int" use="required"/>
+	</complexType>
+
+	<complexType name="type_payment">
+		<choice>
+			<element name="cash" type="xs:type_cash" />
+			<element name="card" type="xs:type_card" />
+		</choice>
+		<attribute name="id" type="int" />
+	</complexType>
+
+	<complexType name="type_cash">
+		<attribute name="amount" type="int" />
+	</complexType>
+
+	<complexType name="type_card">
+		<all>
+			<element name="amount" type="int" />
+			<element name="cardEndsWith" type="xs:type_int4chars" />
+			<element name="cvv" type="xs:type_int3chars" />
+			<element name="expiry" type="xs:type_monthYear" />
+		</all>
+	</complexType>
+
+	<simpleType name="type_branch">
+		<restriction base="string">
+			<enumeration value="CSE" />
+			<enumeration value="ECE" />
+			<enumeration value="EEE" />
+			<enumeration value="ITE" />
+			<enumeration value="BEE" />
+			<enumeration value="ME" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="type_email">
+		<restriction base="string">
+			<pattern value="[^@]+@[^\.]+\..+" />
+		</restriction>
+	</simpleType>
+
+	<complexType name="type_address">
+		<sequence>
+			<element name="line1" type="string" />
+			<element name="line2" type="string" />
+			<element name="city" type="string" />
+			<element name="state" type="xs:type_string2chars" />
+			<element name="zip" type="xs:type_int5chars" />
+		</sequence>
+	</complexType>
+
+	<simpleType name="type_string2chars">
+		<restriction base="string">
+			<length value="2" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="type_int5chars">
+		<restriction base="string">
+			<length value="5"></length>
+			<pattern value="[0-9]*"></pattern>
+		</restriction>
+	</simpleType>
+	<simpleType name="type_int4chars">
+		<restriction base="string">
+			<length value="4"></length>
+			<pattern value="[0-9]*"></pattern>
+		</restriction>
+	</simpleType>
+	<simpleType name="type_int3chars">
+		<restriction base="string">
+			<length value="3"></length>
+			<pattern value="[0-9]*"></pattern>
+		</restriction>
+	</simpleType>
+	<simpleType name="type_monthYear">
+		<restriction base="string">
+			<pattern value="[0-9][0-9]/[0-9][0-9][0-9][0-9]"></pattern>
+		</restriction>
+	</simpleType>
+
+</schema>
