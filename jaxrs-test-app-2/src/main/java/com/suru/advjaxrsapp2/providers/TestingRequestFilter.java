@@ -15,12 +15,17 @@ public class TestingRequestFilter implements ContainerRequestFilter {
 
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException {
-		requestContext.getHeaders().add("head-x", "ContainerRequestFilter");
-		try {
-			requestContext.setRequestUri(new URI("http://localhost:8080/jaxrs-test-app-2/webapi/test/redirect"));
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
+		System.out.println("requested: " + requestContext.getUriInfo().getPath());
+		
+		// commented below code to test authntication
+		
+		// requestContext.getHeaders().add("head-x", "ContainerRequestFilter");
+		// try {
+		// requestContext.setRequestUri(new
+		// URI("http://localhost:8080/jaxrs-test-app-2/webapi/test/redirect"));
+		// } catch (URISyntaxException e) {
+		// e.printStackTrace();
+		// }
 	}
 
 }
