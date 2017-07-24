@@ -20,7 +20,7 @@ public class TestResource {
 	@GET
 	@Path("/redirect")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String xx() {
+	public String redirectTest() {
 		return "redirection successfull with filter";
 	}
 }
